@@ -17,4 +17,4 @@ create table review (
                         created_date date default sysdate
 );
 
-create movie_seq;
+create sequence movie_seq;
