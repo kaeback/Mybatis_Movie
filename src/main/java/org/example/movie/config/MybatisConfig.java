@@ -13,7 +13,7 @@ public class MybatisConfig {
     static {
         InputStream inputStream;
         try {
-            String resource = "org/mybatis/example/mybatis-config.xml";
+            String resource = "config/mybatis-config.xml";
             inputStream = Resources.getResourceAsStream(resource);
             sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
             inputStream.close();

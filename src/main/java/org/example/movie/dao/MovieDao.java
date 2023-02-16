@@ -15,6 +15,7 @@ public class MovieDao {
         try (SqlSession session = factory.openSession()) {
             MovieMapper mapper = session.getMapper(MovieMapper.class);
             mapper.joinMember(member);
+            session.commit();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -32,16 +33,16 @@ public class MovieDao {
         return findMember;
     }
 
-    // 전체 영화 평점
-    public Map<Long, Double> findAllMovieReviewScore() {
-        Map<Long, Double> scores = new HashMap<>();
+    // 전체 영화 목록과 평균 평점
+    public List<Map<String, String>> findAllMovieReviewScore() {
+        List<Map<String, String>> movies = new ArrayList<>();
         try (SqlSession session = factory.openSession()) {
             MovieMapper mapper = session.getMapper(MovieMapper.class);
-            scores = mapper.findAllMovieReviewScore();
+            movies = mapper.findAllMovieReviewScore();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return scores;
+        return movies;
     }
 
     // 개별 영화 평점
@@ -73,6 +74,7 @@ public class MovieDao {
         try (SqlSession session = factory.openSession()) {
             MovieMapper mapper = session.getMapper(MovieMapper.class);
             mapper.saveReview(review);
+            session.commit();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -83,6 +85,7 @@ public class MovieDao {
         try (SqlSession session = factory.openSession()) {
             MovieMapper mapper = session.getMapper(MovieMapper.class);
             mapper.updateReview(updateReview);
+            session.commit();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -93,6 +96,7 @@ public class MovieDao {
         try (SqlSession session = factory.openSession()) {
             MovieMapper mapper = session.getMapper(MovieMapper.class);
             mapper.removeReview(review_id);
+            session.commit();
         } catch (Exception e) {
             e.printStackTrace();
         }

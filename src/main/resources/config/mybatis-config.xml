@@ -6,7 +6,11 @@
 
     <properties resource="config/db.properties"/>
 
-
+    <typeAliases>
+        <typeAlias type="org.example.movie.vo.Member" alias="member"/>
+        <typeAlias type="org.example.movie.vo.Movie" alias="movie"/>
+        <typeAlias type="org.example.movie.vo.Review" alias="review"/>
+    </typeAliases>
 
     <environments default="development">
         <environment id="development">
@@ -21,6 +25,6 @@
     </environments>
 
     <mappers>
-        <mapper resource="mapper/**/*"/>
+        <mapper resource="mapper/movieMapper.xml"/>
     </mappers>
 </configuration>

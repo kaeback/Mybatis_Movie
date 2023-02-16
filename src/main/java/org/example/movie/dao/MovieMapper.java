@@ -13,8 +13,8 @@ public interface MovieMapper {
     // 회원정보 검색(로그인)
     Member findMemberById(String member_id);
 
-    // 전체 영화 평점
-    Map<Long, Double> findAllMovieReviewScore();
+    // 전체 영화 목록과 평균 평점
+    List<Map<String, String>> findAllMovieReviewScore();
 
     // 개별 영화 평점
     double findMovieReviewScore(Long movie_id);

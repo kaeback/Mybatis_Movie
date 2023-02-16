@@ -21,10 +21,11 @@
         select * from member where member_id = #{member_id}
     </select>
 
-    <!--  전체 영화 평점  -->
+    <!--  전체 영화 목록과 평균 평점  -->
     <select id="findAllMovieReviewScore" resultType="map">
         select
             m.movie_id,
+            m.title,
             avg(r.score)
         from
             movie m join review r on (m.movie_id = r.movie_id)
