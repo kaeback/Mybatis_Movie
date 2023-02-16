@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.movie.dao.MovieMapper">
+    <!--  회원가입  -->
+    <insert id="joinMember">
+        insert into member (
+            member_id,
+            password,
+            name
+        ) values (
+            #{member_id},
+            #{password},
+            #{name}
+        )
+    </insert>
+
+    <!--  회원정보 검색(로그인)  -->
+    <select id="findMemberById" resultType="member">
+        select * from member where member_id = #{member_id}
+    </select>
+
+    <!--  전체 영화 평점  -->
+    <select id="findAllMovieReviewScore" resultType="map">
+        select
+            m.movie_id,
+            avg(r.score)
+        from
+            movie m join review r on (m.movie_id = r.movie_id)
+        group by
+            m.movie_id
+    </select>
+
+    <!--  개별 영화 평점  -->
+    <select id="findMovieReviewScore" resultType="double">
+        select avg(score) from review where movie_id = #{movie_id}
+    </select>
+
+    <!--  영화별 리뷰 전체 목록  -->
+    <select id="findAllReviews" resultType="review">
+        select * from review where movie_id = #{movie_id}
+    </select>
+
+    <!--  리뷰 등록  -->
+    <insert id="saveReview">
+        <selectKey keyProperty="review_id" resultType="int" order="BEFORE">
+            select seq_movie.nextval from dual
+        </selectKey>
+        insert into review (
+            review_id,
+            contents,
+            score,
+            member_id
+        ) values (
+            #{review_id},
+            #{contents},
+            #{score},
+            #{member_id}
+        )
+    </insert>
+
+    <!--  리뷰 수정  -->
+    <update id="updateReview">
+        update review
+        <set>
+            <if test="contents != null">contents = #{contents},</if>
+            <if test="score != null">score = #{score}</if>
+        </set>
+        where reivew_id = #{review_id}
+    </update>
+
+    <!--  리뷰 삭제  -->
+    <delete id="removeReview">
+        delete from review where review_id = #{review_id}
+    </delete>
+
+</mapper>
