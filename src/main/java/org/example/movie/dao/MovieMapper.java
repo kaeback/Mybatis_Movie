@@ -1,6 +1,7 @@
 package org.example.movie.dao;
 
 import org.example.movie.vo.Member;
+import org.example.movie.vo.Movie;
 import org.example.movie.vo.Review;
 
 import java.util.List;
@@ -13,8 +14,8 @@ public interface MovieMapper {
     // 회원정보 검색(로그인)
     Member findMemberById(String member_id);
 
-    // 전체 영화 목록과 평균 평점
-    List<Map<String, String>> findAllMovieReviewScore();
+    // 전체 영화 목록
+    List<Movie> findAllMovies();
 
     // 개별 영화 평점
     double findMovieReviewScore(Long movie_id);

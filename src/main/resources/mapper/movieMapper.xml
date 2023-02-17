@@ -21,16 +21,9 @@
         select * from member where member_id = #{member_id}
     </select>
 
-    <!--  전체 영화 목록과 평균 평점  -->
-    <select id="findAllMovieReviewScore" resultType="map">
-        select
-            m.movie_id,
-            m.title,
-            avg(r.score)
-        from
-            movie m join review r on (m.movie_id = r.movie_id)
-        group by
-            m.movie_id
+    <!--  전체 영화 목록  -->
+    <select id="findAllMovies" resultType="movie">
+        select * from movie
     </select>
 
     <!--  개별 영화 평점  -->

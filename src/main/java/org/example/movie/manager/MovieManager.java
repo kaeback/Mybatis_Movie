@@ -31,9 +31,9 @@ public class MovieManager {
         throw new LoginFaildException("아이디 또는 패스워드가 틀렸습니다.");
     }
 
-    // 영화 목록 및 평균 평점 출력
-    public List<Map<String, String>> findAllMoviesAndScores() {
-        return movieDao.findAllMovieReviewScore();
+    // 영화 목록 출력
+    public List<Movie> findAllMovies() {
+        return movieDao.findAllMovies();
     }
 
     // 리뷰 등록

@@ -34,11 +34,11 @@ public class MovieDao {
     }
 
     // 전체 영화 목록과 평균 평점
-    public List<Map<String, String>> findAllMovieReviewScore() {
-        List<Map<String, String>> movies = new ArrayList<>();
+    public List<Movie> findAllMovies() {
+        List<Movie> movies = new ArrayList<>();
         try (SqlSession session = factory.openSession()) {
             MovieMapper mapper = session.getMapper(MovieMapper.class);
-            movies = mapper.findAllMovieReviewScore();
+            movies = mapper.findAllMovies();
         } catch (Exception e) {
             e.printStackTrace();
         }

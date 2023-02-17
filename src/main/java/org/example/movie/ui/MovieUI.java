@@ -4,6 +4,7 @@ import org.example.movie.exception.DuplicateMemberIdException;
 import org.example.movie.exception.LoginFaildException;
 import org.example.movie.manager.MovieManager;
 import org.example.movie.vo.Member;
+import org.example.movie.vo.Movie;
 
 import java.util.List;
 import java.util.Map;
@@ -85,12 +86,11 @@ public class MovieUI {
         System.out.println("ABC 영화 리뷰");
         System.out.println("==========================");
         System.out.println("** 현재 상영중인 영화 **");
-
-        List<Map<String, String>> movies = manager.findAllMoviesAndScores();
-        for (Map<String, String> movie : movies) {
-            System.out.print(movie.get("MOVIE_ID") + "  ");
-            System.out.print(movie.get("TITLE") + "  ");
-            System.out.print(movie.get("SCORE") + "  ");
+        System.out.println("No\t제목");
+        List<Movie> movies = manager.findAllMovies();
+        for (Movie movie : movies) {
+            System.out.print(movie.getMovie_id() + "\t");
+            System.out.println(movie.getTitle());
         }
     }
 
