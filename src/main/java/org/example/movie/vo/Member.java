@@ -5,6 +5,8 @@ public class Member {
     private String password;
     private String name;
 
+    public Member() {}
+
     public Member(String member_id, String password, String name) {
         this.member_id = member_id;
         this.password = password;

@@ -17,14 +17,20 @@ public interface MovieMapper {
     // 전체 영화 목록
     List<Movie> findAllMovies();
 
-    // 개별 영화 평점
-    double findMovieReviewScore(Long movie_id);
+    // 영화 평균 평점
+    Double findAvgScore(Long movie_id);
+
+    // 영화 정보
+    Movie findMovieById(Long movie_id);
 
     // 영화별 리뷰 전체 목록
     List<Review> findAllReviews(Long movie_id);
 
     // 리뷰 등록
     void saveReview(Review review);
+
+    // 리뷰 검색
+    Review findReviewByMemberId(String member_id);
 
     // 리뷰 수정
     void updateReview(Review updateReview);

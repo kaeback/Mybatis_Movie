@@ -9,7 +9,7 @@
     </appender>
 
     <logger name="org.example.movie.dao">
-        <level value="trace"/>
+        <level value="info"/>
     </logger>
     <root level="error">
         <appender-ref ref="stdout"/>

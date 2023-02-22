@@ -45,16 +45,28 @@ public class MovieDao {
         return movies;
     }
 
-    // 개별 영화 평점
-    public double findMovieReviewScore(Long movie_id) {
-        double score = 0.0;
+    // 영화 평균 평점
+    public Double findAvgScore(Long movie_id) {
+        Double score = 0.0;
         try (SqlSession session = factory.openSession()) {
             MovieMapper mapper = session.getMapper(MovieMapper.class);
-            score = mapper.findMovieReviewScore(movie_id);
+            score = mapper.findAvgScore(movie_id);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return score;
+    }
+
+    // 영화 정보
+    public Movie findMovieById(Long movie_id) {
+        Movie movie = null;
+        try (SqlSession session = factory.openSession()) {
+            MovieMapper mapper = session.getMapper(MovieMapper.class);
+            movie = mapper.findMovieById(movie_id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return movie;
     }
 
     // 영화별 리뷰 전체 목록
@@ -78,6 +90,19 @@ public class MovieDao {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    // 리뷰 검색
+    public Review findReviewByMemberId(String member_id) {
+        Review review = null;
+        try (SqlSession session = factory.openSession()) {
+            MovieMapper mapper = session.getMapper(MovieMapper.class);
+            review = mapper.findReviewByMemberId(member_id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return review;
     }
 
     // 리뷰 수정

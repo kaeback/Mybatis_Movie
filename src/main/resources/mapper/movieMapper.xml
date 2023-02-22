@@ -27,8 +27,13 @@
     </select>
 
     <!--  개별 영화 평점  -->
-    <select id="findMovieReviewScore" resultType="double">
+    <select id="findAvgScore" resultType="double">
         select avg(score) from review where movie_id = #{movie_id}
+    </select>
+
+    <!--  영화 정보  -->
+    <select id="findMovieById" resultType="movie">
+        select * from movie where movie_id = #{movie_id}
     </select>
 
     <!--  영화별 리뷰 전체 목록  -->
@@ -38,30 +43,34 @@
 
     <!--  리뷰 등록  -->
     <insert id="saveReview">
-        <selectKey keyProperty="review_id" resultType="int" order="BEFORE">
+        <selectKey keyProperty="review_id" resultType="long" order="BEFORE">
             select seq_movie.nextval from dual
         </selectKey>
         insert into review (
             review_id,
             contents,
-            score,
+            movie_id,
             member_id
         ) values (
             #{review_id},
             #{contents},
-            #{score},
+            #{movie_id},
             #{member_id}
         )
     </insert>
+
+    <!--  리뷰 검색  -->
+    <select id="findReviewByMemberId" resultType="review">
+        select * from review where member_id = #{member_id}
+    </select>
 
     <!--  리뷰 수정  -->
     <update id="updateReview">
         update review
         <set>
-            <if test="contents != null">contents = #{contents},</if>
-            <if test="score != null">score = #{score}</if>
+            <if test="contents != null">contents = #{contents}</if>
         </set>
-        where reivew_id = #{review_id}
+        where review_id = #{review_id}
     </update>
 
     <!--  리뷰 삭제  -->

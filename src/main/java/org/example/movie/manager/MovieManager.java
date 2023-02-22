@@ -31,14 +31,29 @@ public class MovieManager {
         throw new LoginFaildException("아이디 또는 패스워드가 틀렸습니다.");
     }
 
-    // 영화 목록 출력
+    // 모든 영화 목록
     public List<Movie> findAllMovies() {
         return movieDao.findAllMovies();
+    }
+
+    // 영화 정보 검색
+    public Movie findMovieById(Long movie_id) {
+        return movieDao.findMovieById(movie_id);
+    }
+
+    // 영화별 등록된 리뷰 목록 검색
+    public List<Review> findAllReviews(Long movie_id) {
+        return movieDao.findAllReviews(movie_id);
     }
 
     // 리뷰 등록
     public void saveReview(Review review) {
         movieDao.saveReview(review);
+    }
+
+    // 리뷰 검색
+    public Review findReviewByMemberId(String member_id) {
+        return movieDao.findReviewByMemberId(member_id);
     }
 
     // 리뷰 수정

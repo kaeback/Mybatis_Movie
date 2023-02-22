@@ -3,13 +3,15 @@ package org.example.movie.vo;
 public class Review {
     private Long review_id;
     private String contents;
-    private int score;
+    private Long movie_id;
     private String member_id;
     private String created_date;
 
-    public Review(String contents, int score, String member_id) {
+    public Review() {}
+
+    public Review(String contents, Long movie_id, String member_id) {
         this.contents = contents;
-        this.score = score;
+        this.movie_id = movie_id;
         this.member_id = member_id;
     }
 
@@ -29,12 +31,12 @@ public class Review {
         this.contents = contents;
     }
 
-    public int getScore() {
-        return score;
+    public Long getMovie_id() {
+        return movie_id;
     }
 
-    public void setScore(int score) {
-        this.score = score;
+    public void setMovie_id(Long movie_id) {
+        this.movie_id = movie_id;
     }
 
     public String getMember_id() {
@@ -58,7 +60,7 @@ public class Review {
         return "Review{" +
                 "review_id=" + review_id +
                 ", contents='" + contents + '\'' +
-                ", score=" + score +
+                ", movie_id=" + movie_id +
                 ", member_id='" + member_id + '\'' +
                 ", created_date='" + created_date + '\'' +
                 '}';
