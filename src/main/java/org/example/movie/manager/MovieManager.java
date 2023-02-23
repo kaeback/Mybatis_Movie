@@ -52,8 +52,11 @@ public class MovieManager {
     }
 
     // 리뷰 검색
-    public Review findReviewByMemberId(String member_id) {
-        return movieDao.findReviewByMemberId(member_id);
+    public Review findReview(Long movie_id, String member_id) {
+    	Review searchReview = new Review();
+    	searchReview.setMovie_id(movie_id);
+    	searchReview.setMember_id(member_id);
+        return movieDao.findReview(searchReview);
     }
 
     // 리뷰 수정

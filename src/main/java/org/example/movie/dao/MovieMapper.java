@@ -17,9 +17,6 @@ public interface MovieMapper {
     // 전체 영화 목록
     List<Movie> findAllMovies();
 
-    // 영화 평균 평점
-    Double findAvgScore(Long movie_id);
-
     // 영화 정보
     Movie findMovieById(Long movie_id);
 
@@ -30,7 +27,7 @@ public interface MovieMapper {
     void saveReview(Review review);
 
     // 리뷰 검색
-    Review findReviewByMemberId(String member_id);
+    Review findReview(Review searchReview);
 
     // 리뷰 수정
     void updateReview(Review updateReview);

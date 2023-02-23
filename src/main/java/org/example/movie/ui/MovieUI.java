@@ -106,7 +106,7 @@ public class MovieUI {
             Movie movie = manager.findMovieById(movie_id);
             System.out.println("제목: " + movie.getTitle());
             // 내가 작성한 리뷰 가져오기
-            Review myReview = manager.findReviewByMemberId(loginMember.getMember_id());
+            Review myReview = manager.findReview(movie_id, loginMember.getMember_id());
             System.out.println("==========================");
             System.out.print("작성한 리뷰: ");
             if (myReview != null) {

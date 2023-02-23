@@ -26,11 +26,6 @@
         select * from movie
     </select>
 
-    <!--  개별 영화 평점  -->
-    <select id="findAvgScore" resultType="double">
-        select avg(score) from review where movie_id = #{movie_id}
-    </select>
-
     <!--  영화 정보  -->
     <select id="findMovieById" resultType="movie">
         select * from movie where movie_id = #{movie_id}
@@ -60,8 +55,8 @@
     </insert>
 
     <!--  리뷰 검색  -->
-    <select id="findReviewByMemberId" resultType="review">
-        select * from review where member_id = #{member_id}
+    <select id="findReview" resultType="review">
+        select * from review where movie_id = #{movie_id} and member_id = #{member_id} 
     </select>
 
     <!--  리뷰 수정  -->

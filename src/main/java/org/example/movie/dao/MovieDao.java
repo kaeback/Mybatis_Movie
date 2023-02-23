@@ -33,7 +33,7 @@ public class MovieDao {
         return findMember;
     }
 
-    // 전체 영화 목록과 평균 평점
+    // 전체 영화 목록
     public List<Movie> findAllMovies() {
         List<Movie> movies = new ArrayList<>();
         try (SqlSession session = factory.openSession()) {
@@ -43,18 +43,6 @@ public class MovieDao {
             e.printStackTrace();
         }
         return movies;
-    }
-
-    // 영화 평균 평점
-    public Double findAvgScore(Long movie_id) {
-        Double score = 0.0;
-        try (SqlSession session = factory.openSession()) {
-            MovieMapper mapper = session.getMapper(MovieMapper.class);
-            score = mapper.findAvgScore(movie_id);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return score;
     }
 
     // 영화 정보
@@ -93,11 +81,11 @@ public class MovieDao {
     }
 
     // 리뷰 검색
-    public Review findReviewByMemberId(String member_id) {
+    public Review findReview(Review searchReview) {
         Review review = null;
         try (SqlSession session = factory.openSession()) {
             MovieMapper mapper = session.getMapper(MovieMapper.class);
-            review = mapper.findReviewByMemberId(member_id);
+            review = mapper.findReview(searchReview);
         } catch (Exception e) {
             e.printStackTrace();
         }
