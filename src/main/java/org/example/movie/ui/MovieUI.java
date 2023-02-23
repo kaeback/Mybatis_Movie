@@ -17,8 +17,8 @@ public class MovieUI {
     private Member loginMember;
 
     public MovieUI() {
-        // 로그인을 하지 않았으면
         while (true) {
+        	// 로그인 전이면 회원가입 및 로그인 메뉴를 출력
             if (loginMember == null) {
                 beforeLoginMenu();
                 String input = scanner.nextLine();
@@ -27,6 +27,7 @@ public class MovieUI {
                     case "2": login(); break;
                     default: System.out.println("다시 선택 해주세요");
                 }
+            // 로그인을 했으면 영화 목록을 출력
             } else {
                 mainMenu();
                 System.out.print("리뷰를 작성하거나 확인할 영화의 No를 선택하세요: ");
@@ -103,7 +104,7 @@ public class MovieUI {
             Long movie_id = Long.valueOf(no);
             // 영화 제목 가져오기
             Movie movie = manager.findMovieById(movie_id);
-
+            System.out.println("제목: " + movie.getTitle());
             // 내가 작성한 리뷰 가져오기
             Review myReview = manager.findReviewByMemberId(loginMember.getMember_id());
             System.out.println("==========================");
